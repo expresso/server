@@ -1,6 +1,6 @@
 {
   "name": "@expresso/server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "@expresso's simple, funny, opinated and http-based server wrapper for @expresso/app",
   "main": "dist/index.js",
   "scripts": {
@@ -50,5 +50,7 @@
   "contributors": [
     "Rogério Munhoz <rogerio.j.munhoz@gmail.com>"
   ],
-  "files": ["dist"]
+  "files": [
+    "dist"
+  ]
 }
