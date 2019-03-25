@@ -8,7 +8,9 @@
     "clean": "rm -rf dist",
     "build:clean": "npm run clean && npm run build",
     "build:watch": "tsc -w",
-    "lint": "tslint --project tsconfig.json"
+    "lint": "tslint --project tsconfig.json",
+    "prepare": "npm run build:clean",
+    "postpublish": "npm run clean"
   },
   "repository": {
     "type": "git",
@@ -43,5 +45,8 @@
     "hooks": {
       "pre-commit": "npm run lint"
     }
-  }
+  },
+  "contributors": [
+    "Rogério Munhoz <rogerio.j.munhoz@gmail.com>"
+  ]
 }
