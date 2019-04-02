@@ -1,6 +1,6 @@
 {
   "name": "@expresso/server",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "@expresso's simple, funny, opinated and http-based server wrapper for @expresso/app",
   "main": "dist/index.js",
   "scripts": {
