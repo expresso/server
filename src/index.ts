@@ -30,8 +30,8 @@ export interface IServerTransformer {
 export async function start<TConfig extends IServerConfig> (appFactory: IExpressoAppFactory<TConfig>, options: TConfig, serverTransformer?: IServerTransformer) {
   const config: Filled<IServerConfig> & TConfig = merge(
     { server: { printOnListening: true } },
-    { server: { binding: { ip: env.get('SERVER_BINDING_IP', '0.0.0.0') } } },
-    { server: { binding: { port: parseInt(env.get('SERVER_BINDING_PORT', 3000), 10) } } },
+    { server: { binding: { ip: env.get('SERVER_BINDING_IP', 'HOST', '0.0.0.0') } } },
+    { server: { binding: { port: parseInt(env.get('SERVER_BINDING_PORT', 'PORT', 3000), 10) } } },
     options
   )
 
@@ -42,14 +42,11 @@ export async function start<TConfig extends IServerConfig> (appFactory: IExpress
   server.on('listening', () => {
     const addr = server.address()
 
-    if (!addr) {
-      console.log('Server is listening on unknown address')
-      return
-    }
+    if (!addr) return console.log('Server is listening on unknown address')
 
     cfonts.say('expresso', {
       font: 'simple3d',
-      colors: [ 'green' ],
+      colors: ['green'],
       letterSpacing: 0,
       align: 'center',
       space: false,
@@ -60,7 +57,7 @@ export async function start<TConfig extends IServerConfig> (appFactory: IExpress
       ? addr
       : `${addr.address}:${addr.port}`
 
-    const { string: name } = cfonts.render(config.name, { font: 'console', colors: [ 'green' ] })
+    const { string: name } = cfonts.render(config.name, { font: 'console', colors: ['green'] })
     const { string: info } = cfonts.render(`${config.name} server listening at http://${address}`, {
       font: 'console',
       align: 'center',
