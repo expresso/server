@@ -44,7 +44,7 @@ export async function start<TConfig extends IServerConfig> (appFactory: IExpress
 
     if (!addr) return console.log('Server is listening on unknown address')
 
-    cfonts.say(config.name || 'expresso', {
+    cfonts.say(printAppName ? config.name || 'expresso' : 'expresso', {
       font: 'simple3d',
       colors: ['green'],
       letterSpacing: 0,
