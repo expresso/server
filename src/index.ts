@@ -1,5 +1,5 @@
 import http from 'http'
-const env = require('sugar-env')
+import env from 'sugar-env'
 const cfonts = require('cfonts')
 import merge from 'lodash.merge'
 import { Express } from 'express'
@@ -30,8 +30,8 @@ export interface IServerTransformer {
 export async function start<TConfig extends IServerConfig> (appFactory: IExpressoAppFactory<TConfig>, options: TConfig, serverTransformer?: IServerTransformer) {
   const config: Filled<IServerConfig> & TConfig = merge(
     { server: { printOnListening: true } },
-    { server: { binding: { ip: env.get('SERVER_BINDING_IP', 'HOST', '0.0.0.0') } } },
-    { server: { binding: { port: parseInt(env.get('SERVER_BINDING_PORT', 'PORT', 3000), 10) } } },
+    { server: { binding: { ip: env.get(['SERVER_BINDING_IP', 'HOST'], '0.0.0.0') } } },
+    { server: { binding: { port: env.get.int(['SERVER_BINDING_PORT', 'PORT'], '3000') } } },
     options
   )
 
