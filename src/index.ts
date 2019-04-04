@@ -27,7 +27,7 @@ export interface IServerTransformer {
   (server: http.Server, config: Required<IServerConfig>): Promise<void>
 }
 
-export async function start<TConfig extends IServerConfig> (appFactory: IExpressoAppFactory<TConfig>, options: TConfig, serverTransformer?: IServerTransformer) {
+export async function start<TConfig extends IServerConfig> (appFactory: IExpressoAppFactory<TConfig>, options: TConfig, serverTransformer?: IServerTransformer, printAppName: boolean = true) {
   const config: Filled<IServerConfig> & TConfig = merge(
     { server: { printOnListening: true } },
     { server: { binding: { ip: env.get(['SERVER_BINDING_IP', 'HOST'], '0.0.0.0') } } },
@@ -44,7 +44,7 @@ export async function start<TConfig extends IServerConfig> (appFactory: IExpress
 
     if (!addr) return console.log('Server is listening on unknown address')
 
-    cfonts.say('expresso', {
+    cfonts.say(config.name || 'expresso', {
       font: 'simple3d',
       colors: ['green'],
       letterSpacing: 0,
