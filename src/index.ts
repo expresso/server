@@ -31,7 +31,7 @@ export async function start<TConfig extends IServerConfig> (appFactory: IExpress
   const config: Filled<IServerConfig> & TConfig = merge(
     { server: { printOnListening: true } },
     { server: { binding: { ip: env.get(['SERVER_BINDING_IP', 'HOST'], '0.0.0.0') } } },
-    { server: { binding: { port: env.get.int(['SERVER_BINDING_PORT', 'PORT'], '3000') } } },
+    { server: { binding: { port: env.get.int(['SERVER_BINDING_PORT', 'PORT'], 3000) } } },
     options
   )
 
