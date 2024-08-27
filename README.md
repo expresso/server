@@ -70,7 +70,7 @@ export interface IServerConfig {
 ```
 
 - **Name:** Server or app name
-- **Server [optional]**:
+- **Server (optional)**:
   - **printOnListening (boolean):** Enables or disables the informative text line `Expresso server listening on...`
   - **binding:**
     - **ip (string):** The IP on which the server will bind to
